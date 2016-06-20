@@ -34,8 +34,9 @@ var schema = new graphql.GraphQLSchema({
 });
 
 app.use('/graphql', graphqlHttp({
-  schema: schema,
-  pretty: true
+  schema,
+  pretty: true,
+  graphiql: true
 }));
 
 app.listen(8888, () => {
