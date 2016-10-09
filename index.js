@@ -8,6 +8,8 @@ var graphqlHttp = require('express-graphql');
 var app = express();
 var data = require('./data.json');
 
+const PORT = 8000;
+
 var userType = new graphql.GraphQLObjectType({
   name: 'User',
   fields: {
@@ -28,6 +30,18 @@ var schema = new graphql.GraphQLSchema({
         resolve: (_, args) => {
           return data[args.id];
         }
+      },
+      users: {
+        type: new graphql.GraphQLList(userType),
+        resolve: () => {
+          let users = [];
+
+          for (const key in data) {
+            users.push(data[key]);
+          }
+
+          return users;
+        }
       }
     }
   })
@@ -39,6 +53,6 @@ app.use('/graphql', graphqlHttp({
   graphiql: true
 }));
 
-app.listen(8888, () => {
+app.listen(PORT, () => {
   console.log('Server running...');
 });
