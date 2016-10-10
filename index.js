@@ -15,6 +15,8 @@ app.use('/graphql', graphqlHttp({
   graphiql: true
 }));
 
+app.use(express.static(__dirname + '/public'));
+
 app.listen(PORT, () => {
   console.log('Server running...');
 });
