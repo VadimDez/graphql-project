@@ -3,13 +3,13 @@
  */
 import React from 'react';
 import { render } from 'react-dom';
+import { Router, Route, hashHistory } from 'react-router';
 
-import { List } from './list';
+import { App } from './app';
 
 render(
-  <div>
-    <h1>GraphQL</h1>
-    <List />
-  </div>,
+  <Router history={hashHistory}>
+    <Route path="/" component={ App } />
+  </Router>,
   document.querySelector('#app')
 );
