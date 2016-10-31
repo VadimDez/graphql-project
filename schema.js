@@ -2,7 +2,14 @@
  * Created by Vadym Yatsyuk on 09/10/2016
  */
 const graphql = require('graphql');
+const sqlite3 = require('sqlite3');
+const bluebird = require('bluebird');
 let data = require('./data.json');
+
+const db = new sqlite3.Database('storage.db');
+
+db.get = bluebird.promisify(db.get);
+db.all = bluebird.promisify(db.all);
 
 var userType = new graphql.GraphQLObjectType({
   name: 'User',
@@ -21,20 +28,14 @@ module.exports = new graphql.GraphQLSchema({
         args: {
           id: { type: graphql.GraphQLString }
         },
-        resolve: (_, args) => {
-          return data[args.id];
+        resolve: (_, { id }) => {
+          return db.get(`SELECT * FROM users WHERE id = $id`, { id });
         }
       },
       users: {
         type: new graphql.GraphQLList(userType),
         resolve: () => {
-          let users = [];
-
-          for (const key in data) {
-            users.push(data[key]);
-          }
-
-          return users;
+          return db.get(`SELECT * FROM users`);
         }
       }
     }
