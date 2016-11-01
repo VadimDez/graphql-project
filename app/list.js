@@ -2,6 +2,7 @@
  * Created by Vadym Yatsyuk on 13/10/2016
  */
 import React from 'react';
+import { Link } from 'react-router';
 import { User } from './user';
 
 export class List extends React.Component {
@@ -32,7 +33,10 @@ export class List extends React.Component {
     });
 
     return (
-      <ul>{ users }</ul>
+      <div>
+        <Link to={ '/new' }>Add new user</Link>
+        <ul>{ users }</ul>
+      </div>
     );
   }
 }

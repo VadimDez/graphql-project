@@ -30,6 +30,17 @@ module.exports = new graphql.GraphQLSchema({
         },
         resolve: (_, { id }) => db.get('SELECT * FROM users u WHERE u.id = $id', { $id: id })
       },
+      addUser: {
+        type: userType,
+        args: {
+          name: { type: graphql.GraphQLString }
+        },
+        resolve: (_, { name }) => {
+          const stmt = db.prepare('INSERT INTO users(name) VALUES (?)');
+
+          stmt.run(name);
+        },
+      },
       users: {
         type: new graphql.GraphQLList(userType),
         resolve: () => db.all(`SELECT * FROM users`)
