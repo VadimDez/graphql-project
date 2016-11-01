@@ -28,15 +28,11 @@ module.exports = new graphql.GraphQLSchema({
         args: {
           id: { type: graphql.GraphQLString }
         },
-        resolve: (_, { id }) => {
-          return db.get(`SELECT * FROM users WHERE id = $id`, { id });
-        }
+        resolve: (_, { id }) => db.get('SELECT * FROM users u WHERE u.id = $id', { $id: id })
       },
       users: {
         type: new graphql.GraphQLList(userType),
-        resolve: () => {
-          return db.get(`SELECT * FROM users`);
-        }
+        resolve: () => db.all(`SELECT * FROM users`)
       }
     }
   })
