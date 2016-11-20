@@ -17,6 +17,7 @@ render(
       <Route path="/new" component={ AddUser } />
       <Route path="/users" component={ List } />
       <Route path="/users/:id" component={ Details }/>
+      <Route path="/users/:id/edit" component={ AddUser }/>
     </Route>
   </Router>,
   document.querySelector('#app')

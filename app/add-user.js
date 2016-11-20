@@ -16,6 +16,13 @@ export class AddUser extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentWillMount() {
+    this.setState({
+      isLoading: true
+    });
+    console.log(this.props.params.id);
+  }
+
   onNameChange(event) {
     this.setState({ name: event.target.value });
   }

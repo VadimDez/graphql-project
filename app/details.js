@@ -2,6 +2,8 @@
  * Created by Vadym Yatsyuk on 18/10/2016
  */
 import React from 'react';
+import { Link } from 'react-router';
+import { UserService } from './services/UserService';
 
 export class Details extends React.Component {
   constructor() {
@@ -21,7 +23,10 @@ export class Details extends React.Component {
     let isLoading = '';
 
     if (this.state.user) {
-      user = <h2>{ this.state.user.name }</h2>
+      user = <div>
+        <Link to={ `/users/${ this.state.user.id }/edit`}>Edit</Link>
+        <h2>{ this.state.user.name }</h2>
+      </div>
     }
 
     if (this.state.isLoading) {
@@ -39,8 +44,7 @@ export class Details extends React.Component {
   }
 
   getUser(id) {
-    fetch(`/graphql?query={user(id:"${ id }"){id,name}}`)
-      .then(res => res.json())
+    UserService.get(id)
       .then(res => {
         this.setState({
           isLoading: false,
