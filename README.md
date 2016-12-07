@@ -1,4 +1,7 @@
 # graphql-project
 graphql project
 
-Vadym Yatsyuk
+
+## License
+
+[MIT](https://tldrlegal.com/license/mit-license) © [Vadym Yatsyuk](https://github.com/vadimdez)
