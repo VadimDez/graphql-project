@@ -48,5 +48,5 @@ if (isDevelopment) {
 
 
 app.listen(PORT, () => {
-  console.log('Server running...');
+  console.log(`Server running on port: ${ PORT }`);
 });
