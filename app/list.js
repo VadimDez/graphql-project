@@ -2,7 +2,7 @@
  * Created by Vadym Yatsyuk on 13/10/2016
  */
 import React from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { User } from './user';
 
 export class List extends React.Component {
@@ -21,7 +21,7 @@ export class List extends React.Component {
       .then(response => response.json())
       .then(response => {
         this.setState(response.data);
-      }).catch(function(err) {
+      }).catch(err => {
       });
   }
 

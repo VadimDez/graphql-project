@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import { render } from 'react-dom';
-import { Router, Route, hashHistory, IndexRoute } from 'react-router';
+import { BrowserRouter, Route } from 'react-router-dom';
 
 import { App } from './app';
 import { List } from './list';
@@ -11,14 +11,14 @@ import { Details } from './details';
 import { AddUser } from './add-user';
 
 render(
-  <Router history={hashHistory}>
-    <Route path="/" component={ App }>
-      <IndexRoute component={ List } />
+  <BrowserRouter>
+    <App>
+      <Route exact={ true } path="/" component={ List } />
       <Route path="/new" component={ AddUser } />
-      <Route path="/users" component={ List } />
-      <Route path="/users/:id" component={ Details }/>
+      <Route exact={ true } path="/users" component={ List } />
+      <Route exact={ true } path="/users/:id" component={ Details }/>
       <Route path="/users/:id/edit" component={ AddUser }/>
-    </Route>
-  </Router>,
+    </App>
+  </BrowserRouter>,
   document.querySelector('#app')
 );

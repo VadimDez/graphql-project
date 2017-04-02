@@ -2,7 +2,7 @@
  * Created by Vadym Yatsyuk on 13/10/2016
  */
 import React from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 export class User extends React.Component {
   render() {

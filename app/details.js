@@ -2,7 +2,7 @@
  * Created by Vadym Yatsyuk on 18/10/2016
  */
 import React from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { UserService } from './services/UserService';
 
 export class Details extends React.Component {
@@ -15,7 +15,7 @@ export class Details extends React.Component {
     this.setState({
       isLoading: true
     });
-    this.getUser(this.props.params.id);
+    this.getUser(this.props.match.params.id);
   }
 
   render() {

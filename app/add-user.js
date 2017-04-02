@@ -20,7 +20,6 @@ export class AddUser extends React.Component {
     this.setState({
       isLoading: true
     });
-    console.log(this.props.params.id);
   }
 
   onNameChange(event) {
