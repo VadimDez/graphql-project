@@ -1,6 +1,10 @@
 # graphql-project
 graphql project
 
+## Run
+```
+npm start
+```
 
 ## License
 
