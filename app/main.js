@@ -9,6 +9,7 @@ import { App } from './app';
 import { List } from './list';
 import { Details } from './details';
 import { AddUser } from './add-user';
+import { EditUser } from './edit-user';
 
 render(
   <BrowserRouter>
@@ -17,7 +18,7 @@ render(
       <Route path="/new" component={ AddUser } />
       <Route exact={ true } path="/users" component={ List } />
       <Route exact={ true } path="/users/:id" component={ Details }/>
-      <Route path="/users/:id/edit" component={ AddUser }/>
+      <Route path="/users/:id/edit" component={ EditUser }/>
     </App>
   </BrowserRouter>,
   document.querySelector('#app')
