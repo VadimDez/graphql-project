@@ -41,6 +41,21 @@ module.exports = new graphql.GraphQLSchema({
           stmt.run(name);
         },
       },
+      updateUser: {
+        type: userType,
+        args: {
+          id: { type: graphql.GraphQLString },
+          name: { type: graphql.GraphQLString }
+        },
+        resolve: ( _, { id, name }) => {
+          const stmt = db.prepare('UPDATE users SET name = ? WHERE id = ?');
+
+          stmt.run([name, id], err => {
+            console.log('error');
+            console.log(err);
+          });
+        }
+      },
       users: {
         type: new graphql.GraphQLList(userType),
         resolve: () => db.all(`SELECT * FROM users`)
