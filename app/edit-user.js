@@ -15,7 +15,7 @@ export class EditUser extends React.Component {
       isUpdated: false
     };
 
-    this.onNameChange = this.onNameChange.bind(this);
+    this.onValueChange = this.onValueChange.bind(this);
     this.onUpdateUser = this.onUpdateUser.bind(this);
   }
 
@@ -37,17 +37,19 @@ export class EditUser extends React.Component {
       });
   }
 
-  onNameChange(event) {
-    this.setState({
-      user: Object.assign({}, this.state.user, { name: event.target.value })
-    });
+  onValueChange(key) {
+    return event => {
+      this.setState({
+        user: Object.assign({}, this.state.user, { [key]: event.target.value })
+      });
+    };
   }
 
   onUpdateUser() {
     this.setUpdating(true);
     this.setUpdated(false);
 
-    fetch(`/graphql?query={updateUser(id:"${ this.state.user.id }",name:"${ this.state.user.name }"){id}}`, {
+    fetch(`/graphql?query={updateUser(id:${ this.state.user.id },name:"${ this.state.user.name }"){id}}`, {
       method: 'POST'
     })
       .then(({ status }) => {
@@ -90,8 +92,19 @@ export class EditUser extends React.Component {
           Name:
           <input type="text"
                  name="name"
+                 placeholder="Name"
                  value={ this.state.user.name }
-                 onChange={ this.onNameChange }
+                 onChange={ this.onValueChange('name') }
+          />
+        </label>
+
+        <label>
+          Phone:
+          <input type="text"
+                 name="phone"
+                 placeholder="Phone"
+                 value={ this.state.user.phone }
+                 onChange={ this.onValueChange('phone') }
           />
         </label>
 

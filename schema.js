@@ -14,8 +14,9 @@ db.all = bluebird.promisify(db.all);
 var userType = new graphql.GraphQLObjectType({
   name: 'User',
   fields: {
-    id: { type: graphql.GraphQLString },
-    name: { type: graphql.GraphQLString }
+    id: { type: graphql.GraphQLInt },
+    name: { type: graphql.GraphQLString },
+    phone: { type: graphql.GraphQLString }
   }
 });
 
@@ -26,29 +27,31 @@ module.exports = new graphql.GraphQLSchema({
       user: {
         type: userType,
         args: {
-          id: { type: graphql.GraphQLString }
+          id: { type: graphql.GraphQLInt }
         },
         resolve: (_, { id }) => db.get('SELECT * FROM users u WHERE u.id = $id', { $id: id })
       },
       addUser: {
         type: userType,
         args: {
-          name: { type: graphql.GraphQLString }
+          name: { type: graphql.GraphQLString },
+          phone: { type: graphql.GraphQLString }
         },
-        resolve: (_, { name }) => {
-          const stmt = db.prepare('INSERT INTO users(name) VALUES (?)');
+        resolve: (_, { name, phone }) => {
+          const stmt = db.prepare('INSERT INTO users(name, phone) VALUES (?, ?)');
 
-          stmt.run(name);
+          stmt.run([name, phone]);
         },
       },
       updateUser: {
         type: userType,
         args: {
-          id: { type: graphql.GraphQLString },
-          name: { type: graphql.GraphQLString }
+          id: { type: graphql.GraphQLInt },
+          name: { type: graphql.GraphQLString },
+          phone: { type: graphql.GraphQLString }
         },
         resolve: ( _, { id, name }) => {
-          const stmt = db.prepare('UPDATE users SET name = ? WHERE id = ?');
+          const stmt = db.prepare('UPDATE users SET name = ?, phone = ? WHERE id = ?');
 
           stmt.run([name, id], err => {
             console.log('error');

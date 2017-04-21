@@ -26,6 +26,10 @@ export class Details extends React.Component {
       user = <div>
         <Link to={ `/users/${ this.state.user.id }/edit`}>Edit</Link>
         <h2>{ this.state.user.name }</h2>
+
+        <div>
+          <p>Phone: { this.state.user.phone }</p>
+        </div>
       </div>
     }
 
