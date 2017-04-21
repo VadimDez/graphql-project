@@ -9,10 +9,11 @@ export class AddUser extends React.Component {
     super();
 
     this.state = {
-      name: ''
+      name: '',
+      phone: ''
     };
 
-    this.onNameChange = this.onNameChange.bind(this);
+    this.onValueChange = this.onValueChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -22,12 +23,16 @@ export class AddUser extends React.Component {
     });
   }
 
-  onNameChange(event) {
-    this.setState({ name: event.target.value });
+  onValueChange(key) {
+    return event => {
+      this.setState({ [key]: event.target.value });
+    }
   }
 
-  handleSubmit() {
-    fetch(`/graphql?query={addUser(name:"${ this.state.name }"){id,name}}`, {
+  handleSubmit(event) {
+    event.preventDefault();
+
+    fetch(`/graphql?query={addUser(name:"${ this.state.name }",phone:"${ this.state.phone }"){id,name,phone}}`, {
       method: 'POST'
     });
   }
@@ -41,7 +46,14 @@ export class AddUser extends React.Component {
             Name:
             <input type="text"
                    value={ this.state.name }
-                   onChange={ this.onNameChange }
+                   onChange={ this.onValueChange('name') }
+            />
+          </label>
+          <label>
+            Phone:
+            <input type="text"
+                   value={ this.state.phone }
+                   onChange={ this.onValueChange('phone') }
             />
           </label>
 

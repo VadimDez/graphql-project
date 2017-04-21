@@ -20,7 +20,9 @@ export class List extends React.Component {
     fetch('/graphql?query={users{id, name}}')
       .then(response => response.json())
       .then(response => {
-        this.setState(response.data);
+        this.setState({
+          users: response.data.users || []
+        });
       }).catch(err => {
       });
   }
