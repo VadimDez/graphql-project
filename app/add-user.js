@@ -2,9 +2,13 @@
  * Created by Vadym Yatsyuk on 01/11/2016
  */
 
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 export class AddUser extends React.Component {
+  static propTypes = {
+    history: PropTypes.object.isRequired
+  };
+
   constructor() {
     super();
 
@@ -32,8 +36,12 @@ export class AddUser extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    fetch(`/graphql?query={addUser(name:"${ this.state.name }",phone:"${ this.state.phone }"){id,name,phone}}`, {
+    const url = `/graphql?query={addUser(name:"${ encodeURIComponent(this.state.name) }",phone:"${ encodeURIComponent(this.state.phone) }"){id,name,phone}}`;
+
+    fetch(url, {
       method: 'POST'
+    }).then(() => {
+      this.props.history.push('/');
     });
   }
 

@@ -1,14 +1,20 @@
 /**
  * Created by Vadym Yatsyuk on 18/10/2016
  */
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { Link } from 'react-router-dom';
 import { UserService } from './services/UserService';
 
 export class Details extends React.Component {
+  static propTypes = {
+    history: PropTypes.object.isRequired
+  };
+
   constructor() {
     super();
     this.state = {};
+
+    this.deleteUser = this.deleteUser.bind(this);
   }
 
   componentWillMount() {
@@ -25,6 +31,7 @@ export class Details extends React.Component {
     if (this.state.user) {
       user = <div>
         <Link to={ `/users/${ this.state.user.id }/edit`}>Edit</Link>
+        <button onClick={ this.deleteUser } type="button">delete</button>
         <h2>{ this.state.user.name }</h2>
 
         <div>
@@ -55,5 +62,13 @@ export class Details extends React.Component {
           user: res.data.user
         });
       });
+  }
+
+  deleteUser() {
+    fetch(`/graphql?query={deleteUser(id:${ this.state.user.id }){id}}`, {
+      method: 'GET'
+    }).then(() => {
+      this.props.history.push('/');
+    });
   }
 }
