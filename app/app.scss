@@ -1,22 +1,32 @@
-$header-height: 40px;
+@import "variables";
+
 .app-component {
+  font-family: $font-family;
+  font-weight: 300;
+
   > header {
     background-color: #e3e3e3;
-    padding: 10px;
     height: $header-height;
   }
   .header-container {
     width: 800px;
     margin-right: auto;
     margin-left: auto;
+    display: flex;
 
     a {
       text-decoration: none;
       color: #7e9dcd;
-      padding: 0 20px;
-      font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
       font-weight: 300;
       line-height: $header-height;
+
+      &.active {
+        border-bottom: 2px solid #fb7d37;
+      }
+    }
+
+    .divider {
+      flex: 1;
     }
   }
   > section {
@@ -32,5 +42,9 @@ $header-height: 40px;
     bottom: 0;
     left: 0;
     right: 0;
+  }
+
+  .row {
+    display: flex;
   }
 }

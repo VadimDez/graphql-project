@@ -3,7 +3,9 @@
  */
 
 import React from 'react';
+
 import { UserService } from './services/UserService';
+import './edit-user.scss';
 
 export class EditUser extends React.Component {
   constructor() {
@@ -88,31 +90,43 @@ export class EditUser extends React.Component {
     if (!this.state.isLoading) {
       user = <div>
         <h2>{ this.state.user.name }</h2>
-        <label>
-          Name:
-          <input type="text"
-                 name="name"
-                 placeholder="Name"
-                 value={ this.state.user.name }
-                 onChange={ this.onValueChange('name') }
-          />
-        </label>
 
-        <label>
-          Phone:
-          <input type="text"
-                 name="phone"
-                 placeholder="Phone"
-                 value={ this.state.user.phone }
-                 onChange={ this.onValueChange('phone') }
-          />
-        </label>
+        <form>
+          <div className="row">
+            <div className="input-field">
+              <label>
+                Name:
+                <input type="text"
+                       name="name"
+                       placeholder="Name"
+                       value={ this.state.user.name }
+                       onChange={ this.onValueChange('name') }
+                />
+              </label>
+            </div>
+
+            <div className="input-field">
+              <label>
+                Phone:
+                <input type="text"
+                       name="phone"
+                       placeholder="Phone"
+                       value={ this.state.user.phone }
+                       onChange={ this.onValueChange('phone') }
+                />
+              </label>
+            </div>
+          </div>
+
+          <div className="actions">
+            <button type="submit"
+                    onClick={ this.onUpdateUser }
+                    disabled={ this.state.isUpdating }
+            >Save</button>
+          </div>
+        </form>
 
 
-        <button type="button"
-                onClick={ this.onUpdateUser }
-                disabled={ this.state.isUpdating }
-        >Save</button>
 
         <div>
           { updated }
@@ -121,7 +135,7 @@ export class EditUser extends React.Component {
     }
 
     return (
-      <div>
+      <div className="edit-user">
         <h1>Edit view</h1>
 
         { user }

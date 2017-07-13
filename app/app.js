@@ -2,7 +2,7 @@
  * Created by Vadym Yatsyuk on 18/10/2016
  */
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import './app.scss';
 
@@ -12,8 +12,9 @@ export class App extends React.Component {
       <div className="app-component">
         <header>
           <div className="header-container">
-            <Link to="/">GraphQL</Link>
-            <Link to={ '/new' }>Add new user</Link>
+            <NavLink to="/" exact activeClassName='active'>GraphQL</NavLink>
+            <span className="divider"></span>
+            <NavLink to="/new" exact activeClassName='active'>Add new user</NavLink>
           </div>
         </header>
         <section>
