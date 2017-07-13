@@ -1,0 +1,36 @@
+@import "../colors";
+@import "../variables";
+
+.user-edit-form {
+  .input-field {
+    flex: 1;
+  }
+
+  label {
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    padding-right: 15px;
+
+    &:last-child {
+      padding-right: 0;
+    }
+
+    input {
+      border: 1px solid $grey;
+      border-radius: 5px;
+      padding: 10px;
+      font-size: 14px;
+      display: block;
+
+      &::placeholder {
+        color: $grey;
+      }
+    }
+  }
+
+  .actions {
+    margin-top: 10px;
+    text-align: right;
+  }
+}

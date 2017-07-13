@@ -5,7 +5,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter, Route } from 'react-router-dom';
 
-import { App } from './app';
+import { App } from './app/app';
 import { List } from './list/list';
 import { Details } from './details/details';
 import { AddUser } from './add-user/add-user';

@@ -5,6 +5,7 @@
 import React from 'react';
 
 import { UserService } from '../services/UserService';
+import { UserForm } from '../user-form/user-form';
 import './edit-user.scss';
 
 export class EditUser extends React.Component {
@@ -17,7 +18,6 @@ export class EditUser extends React.Component {
       isUpdated: false
     };
 
-    this.onValueChange = this.onValueChange.bind(this);
     this.onUpdateUser = this.onUpdateUser.bind(this);
   }
 
@@ -39,19 +39,11 @@ export class EditUser extends React.Component {
       });
   }
 
-  onValueChange(key) {
-    return event => {
-      this.setState({
-        user: Object.assign({}, this.state.user, { [key]: event.target.value })
-      });
-    };
-  }
-
-  onUpdateUser() {
+  onUpdateUser(user) {
     this.setUpdating(true);
     this.setUpdated(false);
 
-    fetch(`/graphql?query={updateUser(id:${ this.state.user.id },name:"${ this.state.user.name }"){id}}`, {
+    fetch(`/graphql?query={updateUser(id:${ this.state.user.id },name:"${ user.name }"){id}}`, {
       method: 'POST'
     })
       .then(({ status }) => {
@@ -61,7 +53,9 @@ export class EditUser extends React.Component {
           // error
           return;
         }
-
+        this.setState({
+          user
+        });
         this.setUpdated(true);
       });
   }
@@ -91,42 +85,7 @@ export class EditUser extends React.Component {
       user = <div>
         <h2>{ this.state.user.name }</h2>
 
-        <form>
-          <div className="row">
-            <div className="input-field">
-              <label>
-                Name:
-                <input type="text"
-                       name="name"
-                       placeholder="Name"
-                       value={ this.state.user.name }
-                       onChange={ this.onValueChange('name') }
-                />
-              </label>
-            </div>
-
-            <div className="input-field">
-              <label>
-                Phone:
-                <input type="text"
-                       name="phone"
-                       placeholder="Phone"
-                       value={ this.state.user.phone }
-                       onChange={ this.onValueChange('phone') }
-                />
-              </label>
-            </div>
-          </div>
-
-          <div className="actions">
-            <button type="submit"
-                    onClick={ this.onUpdateUser }
-                    disabled={ this.state.isUpdating }
-            >Save</button>
-          </div>
-        </form>
-
-
+        <UserForm user={ this.state.user } submitDisabled={ this.state.isUpdating } onSave={ this.onUpdateUser } />
 
         <div>
           { updated }

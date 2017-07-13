@@ -4,7 +4,9 @@
 
 import React, { PropTypes } from 'react';
 
+import { UserForm } from '../user-form/user-form'
 import './add-user.scss';
+import { User } from '../user';
 
 export class AddUser extends React.Component {
   static propTypes = {
@@ -15,34 +17,27 @@ export class AddUser extends React.Component {
     super();
 
     this.state = {
-      name: '',
-      phone: ''
+      isLoading: false
     };
 
-    this.onValueChange = this.onValueChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentWillMount() {
+  updateLoading(isLoading) {
     this.setState({
-      isLoading: true
+      isLoading
     });
   }
 
-  onValueChange(key) {
-    return event => {
-      this.setState({ [key]: event.target.value });
-    }
-  }
+  handleSubmit(user) {
 
-  handleSubmit(event) {
-    event.preventDefault();
+    const url = `/graphql?query={addUser(name:"${ encodeURIComponent(user.name) }",phone:"${ encodeURIComponent(user.phone) }"){id,name,phone}}`;
 
-    const url = `/graphql?query={addUser(name:"${ encodeURIComponent(this.state.name) }",phone:"${ encodeURIComponent(this.state.phone) }"){id,name,phone}}`;
-
+    this.updateLoading(true);
     fetch(url, {
       method: 'POST'
     }).then(() => {
+      this.updateLoading(false);
       this.props.history.push('/');
     });
   }
@@ -51,24 +46,8 @@ export class AddUser extends React.Component {
     return (
       <div className="add-user-component content">
         <h2>Add user</h2>
-        <form onSubmit={ this.handleSubmit }>
-          <label>
-            Name:
-            <input type="text"
-                   value={ this.state.name }
-                   onChange={ this.onValueChange('name') }
-            />
-          </label>
-          <label>
-            Phone:
-            <input type="text"
-                   value={ this.state.phone }
-                   onChange={ this.onValueChange('phone') }
-            />
-          </label>
 
-          <button type="submit">Create</button>
-        </form>
+        <UserForm onSave={ this.handleSubmit } submitDisabled={ this.state.isLoading } />
       </div>
     );
   }
