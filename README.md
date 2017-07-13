@@ -1,5 +1,10 @@
-# graphql-project
-graphql project
+# User management with GraphQL
+GraphQL project
+
+## Uses
+* React
+* GraphQL
+* Webpack
 
 ## Run
 ```
