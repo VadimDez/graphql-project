@@ -1,6 +1,10 @@
 # graphql-project
 graphql project
 
+## Uses
+* React
+* GraphQL
+
 ## Run
 ```
 npm start
