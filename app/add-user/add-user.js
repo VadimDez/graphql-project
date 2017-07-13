@@ -4,6 +4,8 @@
 
 import React, { PropTypes } from 'react';
 
+import './add-user.scss';
+
 export class AddUser extends React.Component {
   static propTypes = {
     history: PropTypes.object.isRequired
@@ -47,7 +49,7 @@ export class AddUser extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="add-user-component content">
         <h2>Add user</h2>
         <form onSubmit={ this.handleSubmit }>
           <label>

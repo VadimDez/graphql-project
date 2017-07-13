@@ -1,12 +1,18 @@
 @import "variables";
+@import "colors";
 
 .app-component {
   font-family: $font-family;
   font-weight: 300;
 
   > header {
-    background-color: #e3e3e3;
     height: $header-height;
+
+    background: #1e5799; /* Old browsers */
+    background: -moz-linear-gradient(left, #1e5799 0%, #207cca 0%, #fda21e 0%, #ffd800 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #1e5799 0%,#207cca 0%,#fda21e 0%,#ffd800 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #1e5799 0%,#207cca 0%,#fda21e 0%,#ffd800 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#ffd800',GradientType=1 ); /* IE6-9 */
   }
   .header-container {
     width: 800px;
@@ -16,12 +22,13 @@
 
     a {
       text-decoration: none;
-      color: #7e9dcd;
+      color: $white;
       font-weight: 300;
       line-height: $header-height;
 
       &.active {
-        border-bottom: 2px solid #fb7d37;
+        line-height: $header-height - $header-active-border;
+        border-bottom: $header-active-border solid $header-active-color;
       }
     }
 
@@ -46,5 +53,26 @@
 
   .row {
     display: flex;
+  }
+
+  .content {
+    background-color: $white;
+    box-shadow: $box-shadow;
+    padding: $content-padding;
+  }
+
+  button {
+    font-size: 14px;
+    background-color: $orange;
+    color: $white;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    border: 1px solid $orange;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  a {
+    text-decoration: none;
   }
 }

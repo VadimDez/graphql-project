@@ -3,7 +3,9 @@
  */
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router-dom';
-import { UserService } from './services/UserService';
+import { UserService } from '../services/UserService';
+
+import "./details.scss";
 
 export class Details extends React.Component {
   static propTypes = {
@@ -29,14 +31,18 @@ export class Details extends React.Component {
     let isLoading = '';
 
     if (this.state.user) {
-      user = <div>
-        <Link to={ `/users/${ this.state.user.id }/edit`}>Edit</Link>
-        <button onClick={ this.deleteUser } type="button">delete</button>
-        <h2>{ this.state.user.name }</h2>
+      user = <div className="user-details-component__container content">
+        <header>
+          <h2>{ this.state.user.name }</h2>
+          <div>
+            <Link to={ `/users/${ this.state.user.id }/edit`}>Edit</Link>
+            <button onClick={ this.deleteUser } type="button">Delete</button>
+          </div>
+        </header>
 
-        <div>
+        <section>
           <p>Phone: { this.state.user.phone }</p>
-        </div>
+        </section>
       </div>
     }
 
@@ -47,7 +53,7 @@ export class Details extends React.Component {
     }
 
     return (
-      <div>
+      <div className="user-details-component">
         { isLoading }
         { user }
       </div>

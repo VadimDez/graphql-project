@@ -1,0 +1,32 @@
+@import "../colors";
+@import "../variables";
+
+.user-details-component {
+
+  .user-details-component__container {
+
+    h2 {
+      color: $orange;
+      font-weight: 300;
+      margin-top: 5px;
+    }
+
+    header {
+      display: flex;
+
+      h2 {
+        flex: 1;
+      }
+
+      a {
+        color: $orange;
+        padding-right: 10px;
+        padding-left: 10px;
+
+        &:hover {
+          color: darken($orange, 25%);
+        }
+      }
+    }
+  }
+}

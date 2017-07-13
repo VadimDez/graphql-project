@@ -1,0 +1,47 @@
+@import "../colors";
+@import "../variables";
+
+.list-component {
+  ul {
+    list-style: none;
+    background-color: $white;
+    padding: 0;
+    box-shadow: $box-shadow;
+
+    li {
+      display: flex;
+      position: relative;
+      line-height: $list-height;
+
+      a {
+        flex: 1;
+        padding-left: $list-padding-sides;
+        padding-right: $list-padding-sides;
+        text-decoration: none;
+        color: $list-text-color;
+      }
+
+      &:hover {
+        border-left: $list-border solid $orange;
+
+        &:after {
+          content: '>';
+          position: absolute;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          color: $blue-hovered;
+          font-size: 25px;
+          font-weight: 200;
+          padding-right: 15px;
+          line-height: $list-height;
+        }
+
+        a {
+          padding-left: $list-padding-sides - $list-border;
+          color: $blue-hovered;
+        }
+      }
+    }
+  }
+}

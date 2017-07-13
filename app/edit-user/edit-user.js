@@ -4,7 +4,7 @@
 
 import React from 'react';
 
-import { UserService } from './services/UserService';
+import { UserService } from '../services/UserService';
 import './edit-user.scss';
 
 export class EditUser extends React.Component {
@@ -135,7 +135,7 @@ export class EditUser extends React.Component {
     }
 
     return (
-      <div className="edit-user">
+      <div className="edit-user-component content">
         <h1>Edit view</h1>
 
         { user }

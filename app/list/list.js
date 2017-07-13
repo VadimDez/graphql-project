@@ -2,8 +2,9 @@
  * Created by Vadym Yatsyuk on 13/10/2016
  */
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { User } from './user';
+
+import { User } from '../user';
+import './list.scss';
 
 export class List extends React.Component {
   constructor() {
@@ -35,7 +36,7 @@ export class List extends React.Component {
     });
 
     return (
-      <div>
+      <div className="list-component">
         <ul>{ users }</ul>
       </div>
     );

@@ -6,10 +6,10 @@ import { render } from 'react-dom';
 import { BrowserRouter, Route } from 'react-router-dom';
 
 import { App } from './app';
-import { List } from './list';
-import { Details } from './details';
-import { AddUser } from './add-user';
-import { EditUser } from './edit-user';
+import { List } from './list/list';
+import { Details } from './details/details';
+import { AddUser } from './add-user/add-user';
+import { EditUser } from './edit-user/edit-user';
 
 render(
   <BrowserRouter>
