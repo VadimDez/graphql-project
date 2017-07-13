@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon index.js --config nodemon.config.json",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "cross-env NODE_ENV=production webpack --config ./webpack.production.config.js --progress --profile --colors"
+    "build": "rimraf dist && cross-env NODE_ENV=production webpack --config ./webpack.production.config.js --progress --profile --colors"
   },
   "author": "",
   "license": "MIT",

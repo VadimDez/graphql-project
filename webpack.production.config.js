@@ -44,7 +44,7 @@ module.exports = {
     loaders: [{
       test: /\.jsx?$/,
       exclude: /node_modules/,
-      loader: 'babel',
+      loader: 'babel-loader',
       query: {
         "presets": ["es2015", "stage-0", "react"]
       }
@@ -52,11 +52,11 @@ module.exports = {
       test: /\.json?$/,
       loader: 'json'
     }, {
-      test: /\.css$/,
-      loader: ExtractTextPlugin.extract('style', 'css?modules&localIdentName=[name]---[local]---[hash:base64:5]!postcss')
+      test: /\.scss$/,
+      use: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: ['css-loader', 'sass-loader']
+      })
     }]
   },
-  postcss: [
-    require('autoprefixer')
-  ]
 };
