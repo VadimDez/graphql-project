@@ -1,0 +1,36 @@
+$header-height: 40px;
+.app-component {
+  > header {
+    background-color: #e3e3e3;
+    padding: 10px;
+    height: $header-height;
+  }
+  .header-container {
+    width: 800px;
+    margin-right: auto;
+    margin-left: auto;
+
+    a {
+      text-decoration: none;
+      color: #7e9dcd;
+      padding: 0 20px;
+      font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+      font-weight: 300;
+      line-height: $header-height;
+    }
+  }
+  > section {
+    width: 800px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 15px;
+  }
+  > footer {
+    text-align: center;
+    position: absolute;
+    padding-bottom: 15px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+}

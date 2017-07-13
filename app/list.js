@@ -36,7 +36,6 @@ export class List extends React.Component {
 
     return (
       <div>
-        <Link to={ '/new' }>Add new user</Link>
         <ul>{ users }</ul>
       </div>
     );
