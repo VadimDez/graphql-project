@@ -6,8 +6,8 @@
   "scripts": {
     "start": "npm run dev && npm run server",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "rimraf dist && cross-env NODE_ENV=development webpack --config ./webpack.config.js --progress --profile --colors",
-    "build": "rimraf dist && cross-env NODE_ENV=production webpack --config ./webpack.production.config.js --progress --profile --colors",
+    "dev": "rimraf dist && cross-env NODE_ENV=development webpack --config ./webpack/webpack.config.js --progress --profile --colors",
+    "build": "rimraf dist && cross-env NODE_ENV=production webpack --config ./webpack/webpack.production.config.js --progress --profile --colors",
     "server": "nodemon index.js --config nodemon.config.json"
   },
   "author": "",
